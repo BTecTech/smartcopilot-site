@@ -56,24 +56,9 @@
     </script>
 
     <style>
-        :root {
-            --bg-main: #0A0F1A;
-            --bg-surface: #141B2D;
-            --border-subtle: #1E293B;
-            --brand-primary: #34D399;
-            --brand-gradient: linear-gradient(135deg, #34D399 0%, #10B981 100%);
-            --brand-glow: 0 4px 20px rgba(52, 211, 153, 0.3);
-            --text-primary: #F1F5F9;
-            --text-secondary: #CBD5E1;
-            --border-radius-card: 20px;
-            --section-spacing: 100px;
-        }
-
         * { box-sizing: border-box; }
-        html { background: var(--bg-main); }
-        body { font-family: 'DM Sans', sans-serif; color: var(--text-primary); background: var(--bg-main); }
-        p { color: var(--text-secondary); }
-        h1, h2, h3, h4 { color: var(--text-primary); letter-spacing: -0.02em; }
+        html { background: #07090F; }
+        body { font-family: 'DM Sans', sans-serif; color: #E2E8F0; background: #07090F; }
 
         /* ── Gradients & glows ── */
         .glow-green  { box-shadow: 0 0 60px rgba(0,229,160,.15); }
@@ -84,75 +69,14 @@
         /* ── Nav ── */
         .glass-nav { background: rgba(7,9,15,.85); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,.04); }
 
-        /* ── Hero (FASE 2) ── */
-        .hero {
-            background: radial-gradient(circle at top right, rgba(52, 211, 153, 0.1) 0%, transparent 60%), var(--bg-main);
-        }
-        .highlight {
-            background: linear-gradient(to right, var(--brand-primary), #10B981);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .btn {
-            padding: 16px 32px;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        .btn-primary {
-            background: var(--brand-gradient);
-            color: var(--bg-main);
-            border: none;
-            font-weight: 700;
-        }
-        .btn-glow { box-shadow: var(--brand-glow); }
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(52, 211, 153, 0.5);
-        }
-        .btn-secondary {
-            background: transparent;
-            border: 2px solid var(--border-subtle);
-            color: var(--text-primary);
-        }
-        .btn-secondary:hover {
-            border-color: var(--brand-primary);
-            color: var(--brand-primary);
-            background: rgba(52, 211, 153, 0.05);
-        }
-
-        /* ── Feature cards (FASE 3) ── */
-        .feature-card {
-            background-color: var(--bg-surface);
-            border: 1px solid var(--border-subtle);
-            border-radius: var(--border-radius-card);
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        }
-        .feature-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(52, 211, 153, 0.3);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
-        }
-        .feature-icon {
-            background: var(--brand-gradient);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
         /* ── Semaphore badge ── */
         .badge-green  { background: rgba(0,229,160,.12); color: #00E5A0; border: 1px solid rgba(0,229,160,.3); }
         .badge-yellow { background: rgba(245,158,11,.12); color: #F59E0B; border: 1px solid rgba(245,158,11,.3); }
         .badge-red    { background: rgba(244,63,94,.12); color: #F43F5E; border: 1px solid rgba(244,63,94,.3); }
 
         /* ── Card hover ── */
-        .feature-card { background: #0F1623; border: 1px solid #1E2D47; transition: border-color .3s, transform .3s; }
-        .feature-card:hover { border-color: #00E5A040; transform: translateY(-4px); }
+        .feat-card { background: #0F1623; border: 1px solid #1E2D47; transition: border-color .3s, transform .3s; }
+        .feat-card:hover { border-color: #00E5A040; transform: translateY(-4px); }
 
         /* ── Animations ── */
         @keyframes fadeUp   { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:none; } }
@@ -220,7 +144,7 @@
 <!-- ════════════════════════════════════════════════
      HERO
 ════════════════════════════════════════════════ -->
-<section id="inicio" class="hero relative min-h-screen flex items-center pt-20 overflow-hidden grid-bg">
+<section id="inicio" class="relative min-h-screen flex items-center pt-20 overflow-hidden grid-bg">
 
     <!-- Glows -->
     <div class="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-sc-green/8 rounded-full blur-[120px] pointer-events-none"></div>
@@ -238,7 +162,7 @@
 
                 <h1 class="font-display text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-[1.05] mb-6 fade-up delay-1">
                     A corrida certa<br>
-                    <span class="highlight">em segundos</span>
+                    <span class="text-grad">em segundos</span>
                 </h1>
 
                 <p class="text-sc-muted text-lg leading-relaxed mb-10 max-w-lg fade-up delay-2">
@@ -246,13 +170,13 @@
                 </p>
 
                 <div class="flex flex-wrap gap-4 fade-up delay-3">
-                    <a href="#download" class="btn btn-primary btn-glow inline-flex items-center gap-2.5">
+                    <a href="#download" class="inline-flex items-center gap-2.5 px-7 py-4 rounded-xl bg-sc-green text-sc-bg font-bold text-base hover:opacity-90 transition glow-green">
                         <i class="fa-brands fa-google-play"></i>
                         Baixar na Play Store
                     </a>
-                    <a href="#como-funciona" class="btn btn-secondary inline-flex items-center gap-2.5">
+                    <a href="#como-funciona" class="inline-flex items-center gap-2.5 px-7 py-4 rounded-xl border-grad text-sc-text font-semibold text-base hover:border-sc-green/50 transition">
                         Como funciona
-                        <i class="fa-solid fa-arrow-right text-sm text-current"></i>
+                        <i class="fa-solid fa-arrow-right text-sm text-sc-green"></i>
                     </a>
                 </div>
 
@@ -349,8 +273,8 @@
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 
             <!-- 1 -->
-            <div class="feature-card rounded-2xl p-7">
-                <div class="feature-icon w-12 h-12 rounded-xl bg-sc-green/10 flex items-center justify-center mb-5">
+            <div class="feat-card rounded-2xl p-7">
+                <div class="w-12 h-12 rounded-xl bg-sc-green/10 flex items-center justify-center mb-5">
                     <i class="fa-solid fa-traffic-light text-sc-green text-xl"></i>
                 </div>
                 <h3 class="font-display text-lg font-bold mb-2">Semáforo de Rentabilidade</h3>
@@ -358,8 +282,8 @@
             </div>
 
             <!-- 2 -->
-            <div class="feature-card rounded-2xl p-7">
-                <div class="feature-icon w-12 h-12 rounded-xl bg-sc-blue/10 flex items-center justify-center mb-5">
+            <div class="feat-card rounded-2xl p-7">
+                <div class="w-12 h-12 rounded-xl bg-sc-blue/10 flex items-center justify-center mb-5">
                     <i class="fa-solid fa-calculator text-sc-blue text-xl"></i>
                 </div>
                 <h3 class="font-display text-lg font-bold mb-2">Calculadora de Custo Real</h3>
@@ -367,8 +291,8 @@
             </div>
 
             <!-- 3 -->
-            <div class="feature-card rounded-2xl p-7">
-                <div class="feature-icon w-12 h-12 rounded-xl bg-yellow-500/10 flex items-center justify-center mb-5">
+            <div class="feat-card rounded-2xl p-7">
+                <div class="w-12 h-12 rounded-xl bg-yellow-500/10 flex items-center justify-center mb-5">
                     <i class="fa-solid fa-battery-full text-yellow-400 text-xl"></i>
                 </div>
                 <h3 class="font-display text-lg font-bold mb-2">Zero Consumo em Standby</h3>
@@ -376,8 +300,8 @@
             </div>
 
             <!-- 4 -->
-            <div class="feature-card rounded-2xl p-7">
-                <div class="feature-icon w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center mb-5">
+            <div class="feat-card rounded-2xl p-7">
+                <div class="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center mb-5">
                     <i class="fa-solid fa-camera text-purple-400 text-xl"></i>
                 </div>
                 <h3 class="font-display text-lg font-bold mb-2 flex items-center gap-2">
@@ -387,8 +311,8 @@
             </div>
 
             <!-- 5 -->
-            <div class="feature-card rounded-2xl p-7">
-                <div class="feature-icon w-12 h-12 rounded-xl bg-sc-red/10 flex items-center justify-center mb-5">
+            <div class="feat-card rounded-2xl p-7">
+                <div class="w-12 h-12 rounded-xl bg-sc-red/10 flex items-center justify-center mb-5">
                     <i class="fa-solid fa-scale-balanced text-sc-red text-xl"></i>
                 </div>
                 <h3 class="font-display text-lg font-bold mb-2 flex items-center gap-2">
@@ -398,8 +322,8 @@
             </div>
 
             <!-- 6 -->
-            <div class="feature-card rounded-2xl p-7">
-                <div class="feature-icon w-12 h-12 rounded-xl bg-sc-green/10 flex items-center justify-center mb-5">
+            <div class="feat-card rounded-2xl p-7">
+                <div class="w-12 h-12 rounded-xl bg-sc-green/10 flex items-center justify-center mb-5">
                     <i class="fa-solid fa-map-location-dot text-sc-green text-xl"></i>
                 </div>
                 <h3 class="font-display text-lg font-bold mb-2 flex items-center gap-2">
@@ -485,7 +409,7 @@
                 </div>
             </div>
 
-            <div class="feature-card rounded-2xl p-6 flex items-start gap-5">
+            <div class="feat-card rounded-2xl p-6 flex items-start gap-5">
                 <div class="w-10 h-10 shrink-0 rounded-xl bg-sc-red/15 flex items-center justify-center">
                     <i class="fa-solid fa-scale-balanced text-sc-red"></i>
                 </div>
@@ -495,7 +419,7 @@
                 </div>
             </div>
 
-            <div class="feature-card rounded-2xl p-6 flex items-start gap-5">
+            <div class="feat-card rounded-2xl p-6 flex items-start gap-5">
                 <div class="w-10 h-10 shrink-0 rounded-xl bg-sc-green/15 flex items-center justify-center">
                     <i class="fa-solid fa-triangle-exclamation text-sc-green"></i>
                 </div>
@@ -505,7 +429,7 @@
                 </div>
             </div>
 
-            <div class="feature-card rounded-2xl p-6 flex items-start gap-5">
+            <div class="feat-card rounded-2xl p-6 flex items-start gap-5">
                 <div class="w-10 h-10 shrink-0 rounded-xl bg-sc-blue/15 flex items-center justify-center">
                     <i class="fa-solid fa-chart-line text-sc-blue"></i>
                 </div>
@@ -515,7 +439,7 @@
                 </div>
             </div>
 
-            <div class="feature-card rounded-2xl p-6 flex items-start gap-5">
+            <div class="feat-card rounded-2xl p-6 flex items-start gap-5">
                 <div class="w-10 h-10 shrink-0 rounded-xl bg-sc-yellow/15 flex items-center justify-center">
                     <i class="fa-solid fa-list-check text-sc-yellow"></i>
                 </div>
