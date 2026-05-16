@@ -1,0 +1,28 @@
+{
+    "name": "SmartCopilot | Inteligência Real para Motoristas",
+    "short_name": "SmartCopilot",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#0A0F1A",
+    "theme_color": "#34D399",
+    "description": "Assistente inteligente para motoristas profissionais com dashboard financeiro e OCR.",
+    "orientation": "portrait-primary",
+    "prefer_related_applications": false,
+    "categories": [
+        "finance",
+        "productivity",
+        "utilities"
+    ],
+    "icons": [
+        {
+            "src": "smartcopilot_icon.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "smartcopilot_icon.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
