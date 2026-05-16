@@ -7,17 +7,15 @@
     <!-- 🛡️ Segurança: Content Security Policy (CSP) -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://cdnjs.cloudflare.com https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: blob:; connect-src 'self' https://*.firebaseio.com https://*.googleapis.com;">
     
-    <!-- Meta Tags e SEO -->
-    <title>SmartCopilot — Inteligência Real para Motoristas de App</title>
-    <meta name="description" content="O SmartCopilot analisa corridas em tempo real (Valor/KM, Valor/Hora) diretamente na tela. Economize bateria e maximize seus lucros.">
-    <meta name="author" content="SmartCopilot">
+    <!-- Headers de Segurança -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
 
-    <!-- Open Graph -->
-    <meta property="og:title" content="SmartCopilot — Inteligência Real para Motoristas de App">
-    <meta property="og:description" content="Analise corridas do Uber e 99 em tempo real e calcule seus lucros instantaneamente.">
-    <meta property="og:image" content="smartcopilot_icon.png">
-    <meta property="og:type" content="website">
-
+    <!-- Meta Tags Básicas -->
+    <title>SmartCopilot | Inteligência Real para Motoristas de App</title>
+    <meta name="description" content="SmartCopilot analisa corridas em tempo real: Valor/KM, Valor/Hora, Nota do passageiro e muito mais — diretamente na tela, sem trocar de app. Totalmente em conformidade com a LGPD.">
+    
     <!-- PWA & Ícones -->
     <link rel="icon" type="image/png" href="smartcopilot_icon.png">
     <link rel="apple-touch-icon" href="smartcopilot_icon.png">
@@ -26,14 +24,22 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-    <!-- Fonts: Syne (display) + Inter (body) -->
+    <!-- Open Graph -->
+    <meta property="og:title" content="SmartCopilot — Inteligência Real para Motoristas de App">
+    <meta property="og:description" content="Analisa corridas do Uber e 99 em tempo real e calcula os seus lucros instantaneamente.">
+    <meta property="og:image" content="smartcopilot_icon.png">
+    <meta property="og:type" content="website">
+
+    <!-- Otimização de Carregamento de Fontes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- Tailwind e Icones -->
+    
+    <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Fonts: Syne (display) + Inter (body - sincronizado com Flutter) -->
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
@@ -44,7 +50,6 @@
                         body: ['Inter', 'sans-serif'],
                     },
                     colors: {
-                        /* 🎨 Cores Extraídas do AppTheme.dark do Flutter */
                         sc: {
                             bg:      '#0A0F1A',
                             surface: '#141B2D',
@@ -64,11 +69,15 @@
     </script>
 
     <style>
-        :root { --sc-primary: #34D399; --sc-bg: #0A0F1A; }
+        :root {
+            --sc-primary: #34D399;
+            --sc-bg: #0A0F1A;
+        }
+
         * { box-sizing: border-box; }
         html { background: var(--sc-bg); }
-        body { font-family: 'Inter', sans-serif; background: var(--sc-bg); color: #F1F5F9; margin: 0; }
-        
+        body { font-family: 'Inter', sans-serif; color: #F1F5F9; background: var(--sc-bg); }
+
         /* 🚀 Splash Screen Style */
         #loading-screen {
             position: fixed; inset: 0; background: var(--sc-bg);
@@ -85,24 +94,59 @@
             50% { transform: scale(1); opacity: 1; box-shadow: 0 0 60px rgba(52, 211, 153, 0.4); }
         }
 
-        /* ── Estilos do Site (Glows e Gradients) ── */
-        .glow-green { box-shadow: 0 0 60px rgba(52, 211, 153, 0.15); }
-        .text-grad { background: linear-gradient(110deg, #34D399 0%, #38BDF8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        /* ── Gradients & glows ── */
+        .glow-green  { box-shadow: 0 0 60px rgba(52, 211, 153, .15); }
+        .glow-blue   { box-shadow: 0 0 60px rgba(56, 189, 248, .12); }
+        .text-grad   { background: linear-gradient(110deg, #34D399 0%, #38BDF8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
         .border-grad { border: 1px solid transparent; background: linear-gradient(#141B2D, #141B2D) padding-box, linear-gradient(135deg, #34D39950, #38BDF830) border-box; }
-        .glass-nav { background: rgba(10, 15, 26, 0.85); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,.04); }
-        
-        /* Badges e Cards */
-        .badge-green  { background: rgba(52, 211, 153, 0.12); color: #34D399; border: 1px solid rgba(52, 211, 153, 0.3); }
-        .badge-yellow { background: rgba(245, 158, 11, 0.12); color: #F59E0B; border: 1px solid rgba(245, 158, 11, 0.3); }
-        .badge-red    { background: rgba(239, 68, 68, 0.12); color: #EF4444; border: 1px solid rgba(239, 68, 68, 0.3); }
-        .feat-card { background: #141B2D; border: 1px solid #1E293B; transition: all 0.3s; }
+
+        /* ── Nav ── */
+        .glass-nav { background: rgba(10, 15, 26, .85); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,.04); }
+
+        /* ── Semaphore badge ── */
+        .badge-green  { background: rgba(52, 211, 153, .12); color: #34D399; border: 1px solid rgba(52, 211, 153, .3); }
+        .badge-yellow { background: rgba(245, 158, 11, .12); color: #F59E0B; border: 1px solid rgba(245, 158, 11, .3); }
+        .badge-red    { background: rgba(239, 68, 68, .12); color: #EF4444; border: 1px solid rgba(239, 68, 68, .3); }
+
+        /* ── Card hover ── */
+        .feat-card { background: #141B2D; border: 1px solid #1E293B; transition: border-color .3s, transform .3s; }
         .feat-card:hover { border-color: #34D39940; transform: translateY(-4px); }
 
-        /* Animations */
-        @keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:none; } }
+        /* ── Animations ── */
+        @keyframes fadeUp   { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:none; } }
+        @keyframes pulse-dot { 0%,100%{ opacity:1; } 50%{ opacity:.3; } }
+        @keyframes float    { 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-8px); } }
+        @keyframes scanline { 0%{ top:-10%; } 100%{ top:110%; } }
+        @keyframes progress { 0% { transform: translateX(-100%); } 100% { transform: translateX(300%); } }
+
         .fade-up { animation: fadeUp .7s ease both; }
-        .pulse-dot { width: 8px; height: 8px; border-radius: 50%; background: #34D399; animation: pulse-dot 1.6s infinite; }
-        @keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: .3; } }
+        .delay-1 { animation-delay: .1s; }
+        .delay-2 { animation-delay: .2s; }
+        .delay-3 { animation-delay: .3s; }
+        .delay-4 { animation-delay: .4s; }
+        .float   { animation: float 4s ease-in-out infinite; }
+
+        .pulse-dot { width:8px; height:8px; border-radius:50%; background:#34D399; animation: pulse-dot 1.6s ease-in-out infinite; }
+
+        /* ── Overlay card mock ── */
+        .overlay-mock { background: rgba(20, 27, 45, .96); border: 1px solid rgba(52, 211, 153, .25); border-radius: 20px; backdrop-filter: blur(20px); box-shadow: 0 32px 80px rgba(0,0,0,.6), 0 0 0 1px rgba(52, 211, 153, .1); }
+
+        /* ── Scanline effect inside mock ── */
+        .scan-wrap { position:relative; overflow:hidden; border-radius: 14px; }
+        .scan-wrap::after { content:''; position:absolute; left:0; right:0; height:40%; background: linear-gradient(to bottom, transparent, rgba(52, 211, 153, .04), transparent); animation: scanline 3s linear infinite; pointer-events:none; }
+
+        /* ── Grid bg ── */
+        .grid-bg { background-image: linear-gradient(rgba(30, 41, 59, .3) 1px, transparent 1px), linear-gradient(90deg, rgba(30, 41, 59, .3) 1px, transparent 1px); background-size: 48px 48px; }
+
+        /* ── Timeline ── */
+        .timeline-line { background: linear-gradient(to bottom, #34D399, #38BDF8); width: 2px; }
+
+        /* ── Coming soon badge ── */
+        .soon { font-size: 10px; background: rgba(245,158,11,.15); color: #F59E0B; border: 1px solid rgba(245,158,11,.3); border-radius: 999px; padding: 2px 8px; font-family: 'Inter'; font-weight: 600; letter-spacing: .05em; }
+
+        /* ── Details / Summary (FAQ) ── */
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
 
         /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
@@ -113,8 +157,8 @@
 </head>
 <body class="antialiased">
 
-    <!-- 🚀 Splash Screen Premium -->
-    <div id="loading-screen">
+    <!-- 🚀 Premium Splash Screen -->
+    <div id="loading-screen" role="status" aria-live="polite">
         <div class="logo-pulse">
             <img src="smartcopilot_icon.png" class="w-10 h-10 object-contain">
         </div>
@@ -124,213 +168,481 @@
         </div>
     </div>
 
-    <!-- ── NAV ── -->
-    <nav class="fixed w-full z-50 glass-nav">
-        <div class="max-w-7xl mx-auto px-5 lg:px-8">
-            <div class="flex items-center justify-between h-18 py-4">
-                <div class="flex items-center gap-3">
-                    <img src="smartcopilot_icon.png" alt="SmartCopilot" class="w-9 h-9 rounded-xl">
-                    <span class="font-display font-bold text-xl text-white">SmartCopilot</span>
-                </div>
-                <div class="hidden md:flex items-center gap-8">
-                    <a href="#funcionalidades" class="text-sc-muted hover:text-sc-green transition text-sm font-medium">Funcionalidades</a>
-                    <a href="#como-funciona" class="text-sc-muted hover:text-sc-green transition text-sm font-medium">Como Funciona</a>
-                    <a href="#roadmap" class="text-sc-muted hover:text-sc-green transition text-sm font-medium">Novidades</a>
-                    <a href="#faq" class="text-sc-muted hover:text-sc-green transition text-sm font-medium">FAQ</a>
-                    <a href="#privacidade" class="text-sc-muted hover:text-sc-green transition text-sm font-medium">Privacidade</a>
-                </div>
-                <a href="#download" class="hidden md:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-sc-green text-sc-bg font-bold text-sm hover:opacity-90 transition">
-                    <i class="fa-brands fa-google-play"></i> Baixar Grátis
-                </a>
+    <!-- ♿ Pular para o conteúdo -->
+    <a href="#inicio" class="sr-only focus:not-sr-only absolute top-4 left-4 bg-sc-green text-sc-bg p-2 rounded z-[60] font-bold">Pular para o conteúdo</a>
+
+<!-- ════════════════════════════════════════════════
+     NAV
+════════════════════════════════════════════════ -->
+<nav class="fixed w-full z-50 glass-nav">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+        <div class="flex items-center justify-between h-18 py-4">
+            <div class="flex items-center gap-3">
+                <!-- Correção: .png em vez de .jpg -->
+                <img src="smartcopilot_icon.png" alt="SmartCopilot" class="w-9 h-9 rounded-xl object-cover">
+                <span class="font-display font-bold text-xl text-white">SmartCopilot</span>
             </div>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#funcionalidades" class="text-sc-muted hover:text-sc-text transition text-sm font-medium">Funcionalidades</a>
+                <a href="#como-funciona" class="text-sc-muted hover:text-sc-text transition text-sm font-medium">Como Funciona</a>
+                <a href="#roadmap" class="text-sc-muted hover:text-sc-text transition text-sm font-medium">Novidades</a>
+                <a href="#faq" class="text-sc-muted hover:text-sc-text transition text-sm font-medium">FAQ</a>
+                <a href="#privacidade" class="text-sc-muted hover:text-sc-text transition text-sm font-medium">Privacidade</a>
+            </div>
+            <a href="#download" class="hidden md:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-sc-green text-sc-bg font-semibold text-sm hover:opacity-90 transition">
+                <i class="fa-brands fa-google-play text-xs"></i> Baixar Grátis
+            </a>
         </div>
-    </nav>
+    </div>
+</nav>
 
-    <main>
-        <!-- ── HERO ── -->
-        <section id="inicio" class="relative min-h-screen flex items-center pt-20 overflow-hidden">
-            <div class="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-sc-green/5 blur-[120px] pointer-events-none"></div>
-            <div class="max-w-7xl mx-auto px-5 lg:px-8 py-20 w-full grid lg:grid-cols-2 gap-16 items-center">
-                <div class="fade-up">
-                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full badge-green text-xs font-semibold mb-8">
-                        <span class="pulse-dot"></span> 100% Gratuito no Lançamento
-                    </div>
-                    <h1 class="font-display text-5xl lg:text-7xl font-extrabold leading-[1.1] mb-6">
-                        A corrida certa <br><span class="text-grad">em segundos</span>
-                    </h1>
-                    <p class="text-sc-muted text-lg leading-relaxed mb-10 max-w-lg">
-                        O SmartCopilot lê o card de corrida assim que o app toca e exibe <strong class="text-sc-text">Valor/KM, Valor/Hora e Nota do passageiro</strong> — com semáforo colorido baseado na sua meta de lucro. Sem trocar de tela, sem digitar nada.
-                    </p>
-                    <div class="flex flex-wrap gap-4">
-                        <a href="#download" class="px-8 py-4 rounded-xl bg-sc-green text-sc-bg font-bold hover:opacity-90 transition glow-green">Baixar na Play Store</a>
-                        <a href="#como-funciona" class="px-8 py-4 rounded-xl border-grad font-bold hover:border-sc-green/50 transition">Como funciona</a>
-                    </div>
+<!-- ════════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════════ -->
+<section id="inicio" class="relative min-h-screen flex items-center pt-20 overflow-hidden grid-bg">
+
+    <!-- Glows -->
+    <div class="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-sc-green/8 rounded-full blur-[120px] pointer-events-none"></div>
+    <div class="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-sc-blue/8 rounded-full blur-[100px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 py-20 w-full">
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+            <!-- Left -->
+            <div>
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full badge-green text-xs font-semibold mb-8 fade-up">
+                    <span class="pulse-dot"></span>
+                    100% Gratuito no Lançamento
                 </div>
 
-                <!-- App Mockup -->
-                <div class="relative float lg:block hidden">
-                    <div class="absolute -inset-10 bg-sc-green/5 blur-3xl rounded-full"></div>
-                    <div class="relative border-grad p-4 rounded-[40px] bg-sc-bg">
-                        <div class="bg-sc-surface rounded-[32px] p-6 min-h-[400px]">
-                            <div class="flex justify-between items-center mb-8">
-                                <div class="inline-block px-3 py-1 rounded-full badge-green text-[10px] font-bold">APROVADA</div>
-                                <div class="text-sc-green font-bold">SmartCopilot</div>
+                <h1 class="font-display text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-[1.05] mb-6 fade-up delay-1">
+                    A corrida certa<br>
+                    <span class="text-grad">em segundos</span>
+                </h1>
+
+                <p class="text-sc-muted text-lg leading-relaxed mb-10 max-w-lg fade-up delay-2">
+                    O SmartCopilot lê o card de corrida assim que o app toca e exibe <strong class="text-sc-text">Valor/KM, Valor/Hora e Nota do passageiro</strong> — com semáforo colorido baseado na sua meta de lucro. Sem trocar de tela, sem digitar nada.
+                </p>
+
+                <div class="flex flex-wrap gap-4 fade-up delay-3">
+                    <a href="#download" class="inline-flex items-center gap-2.5 px-7 py-4 rounded-xl bg-sc-green text-sc-bg font-bold text-base hover:opacity-90 transition glow-green">
+                        <i class="fa-brands fa-google-play"></i>
+                        Baixar na Play Store
+                    </a>
+                    <a href="#como-funciona" class="inline-flex items-center gap-2.5 px-7 py-4 rounded-xl border-grad text-sc-text font-semibold text-base hover:border-sc-green/50 transition">
+                        Como funciona
+                        <i class="fa-solid fa-arrow-right text-sm text-sc-green"></i>
+                    </a>
+                </div>
+
+                <!-- Mini stats -->
+                <div class="flex gap-8 mt-12 pt-8 border-t border-sc-border fade-up delay-4">
+                    <div>
+                        <div class="font-display text-2xl font-bold text-sc-green">~2s</div>
+                        <div class="text-sc-muted text-xs mt-1">Tempo de análise</div>
+                    </div>
+                    <div>
+                        <div class="font-display text-2xl font-bold text-sc-blue">100%</div>
+                        <div class="text-sc-muted text-xs mt-1">Offline · sem rede</div>
+                    </div>
+                    <div>
+                        <div class="font-display text-2xl font-bold text-white">Uber · 99</div>
+                        <div class="text-sc-muted text-xs mt-1">Plataformas suportadas</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right — Overlay Mock -->
+            <div class="flex justify-center lg:justify-end fade-up delay-2">
+                <div class="float w-full max-w-xs">
+                    <div class="overlay-mock p-5">
+                        <!-- Header mock -->
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2">
+                                <!-- Correção: .png em vez de .jpg -->
+                                <img src="smartcopilot_icon.png" onerror="this.style.display='none'" class="w-6 h-6 rounded-lg object-cover">
+                                <span class="font-display text-sm font-bold text-white">SmartCopilot</span>
                             </div>
-                            <div class="text-center">
-                                <div class="text-4xl font-display font-extrabold text-sc-green">R$ 18,50</div>
-                                <div class="text-xs text-sc-muted mt-2">12,4 km · ~22 min</div>
+                            <div class="flex items-center gap-1.5">
+                                <span class="pulse-dot" style="width:6px;height:6px;"></span>
+                                <span class="text-sc-green text-xs font-medium">Ao vivo</span>
                             </div>
-                            <div class="grid grid-cols-3 gap-3 mt-10">
-                                <div class="bg-sc-card border border-sc-border rounded-2xl p-4 text-center">
-                                    <div class="text-sc-green font-bold">R$1,49</div><div class="text-[10px] text-sc-muted mt-1">por KM</div>
+                        </div>
+
+                        <!-- Semaphore -->
+                        <div class="scan-wrap bg-sc-bg rounded-2xl p-4 mb-4">
+                            <div class="text-center mb-3">
+                                <div class="inline-block px-4 py-1.5 rounded-full badge-green text-xs font-bold tracking-wide mb-2">
+                                    ✦ CORRIDA APROVADA
                                 </div>
-                                <div class="bg-sc-card border border-sc-border rounded-2xl p-4 text-center">
-                                    <div class="text-sc-blue font-bold">R$50</div><div class="text-[10px] text-sc-muted mt-1">por Hora</div>
+                                <div class="font-display text-3xl font-extrabold text-sc-green">R$ 18,50</div>
+                                <div class="text-sc-muted text-xs mt-1">12,4 km · ~22 min</div>
+                            </div>
+
+                            <!-- Metrics -->
+                            <div class="grid grid-cols-3 gap-2 mt-4">
+                                <div class="bg-sc-card rounded-xl p-3 text-center border border-sc-border">
+                                    <div class="text-sc-green text-sm font-bold font-display">R$1,49</div>
+                                    <div class="text-sc-muted text-[10px] mt-0.5">por KM</div>
                                 </div>
-                                <div class="bg-sc-card border border-sc-border rounded-2xl p-4 text-center">
-                                    <div class="text-white font-bold">4,92</div><div class="text-[10px] text-sc-muted mt-1">Nota ★</div>
+                                <div class="bg-sc-card rounded-xl p-3 text-center border border-sc-border">
+                                    <div class="text-sc-blue text-sm font-bold font-display">R$50</div>
+                                    <div class="text-sc-muted text-[10px] mt-0.5">por Hora</div>
+                                </div>
+                                <div class="bg-sc-card rounded-xl p-3 text-center border border-sc-border">
+                                    <div class="text-white text-sm font-bold font-display">4,92</div>
+                                    <div class="text-sc-muted text-[10px] mt-0.5">Nota ★</div>
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Meta indicator -->
+                        <div class="flex items-center gap-2 text-xs text-sc-muted">
+                            <i class="fa-solid fa-circle-check text-sc-green text-xs"></i>
+                            Acima da sua meta de R$1,20/km
+                        </div>
                     </div>
+
+                    <!-- Shadow card below -->
+                    <div class="mx-4 h-3 bg-sc-card/50 rounded-b-2xl blur-sm"></div>
                 </div>
             </div>
-        </section>
 
-        <!-- ── FUNCIONALIDADES ── -->
-        <section id="funcionalidades" class="py-28 border-t border-sc-border">
-            <div class="max-w-7xl mx-auto px-5 lg:px-8">
-                <div class="text-center mb-20">
-                    <p class="text-sc-green text-sm font-semibold tracking-widest uppercase mb-3">Funcionalidades</p>
-                    <h2 class="font-display text-4xl lg:text-5xl font-extrabold">Tudo que você precisa.<br>Na palma da mão.</h2>
+        </div>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     FUNCIONALIDADES
+════════════════════════════════════════════════ -->
+<section id="funcionalidades" class="py-28 border-t border-sc-border">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+
+        <div class="text-center mb-20">
+            <p class="text-sc-green text-sm font-semibold tracking-widest uppercase mb-3">Funcionalidades</p>
+            <h2 class="font-display text-4xl lg:text-5xl font-extrabold">Tudo que você precisa.<br>Na palma da mão.</h2>
+            <p class="text-sc-muted mt-4 max-w-xl mx-auto">Construído do zero para a realidade do motorista brasileiro — sinal fraco, OEM agressiva e plataformas que mudam o layout sem avisar.</p>
+        </div>
+
+        <!-- Grid 2+2+2 -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <!-- 1 -->
+            <div class="feat-card rounded-2xl p-7">
+                <div class="w-12 h-12 rounded-xl bg-sc-green/10 flex items-center justify-center mb-5">
+                    <i class="fa-solid fa-traffic-light text-sc-green text-xl"></i>
                 </div>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="feat-card rounded-2xl p-7">
-                        <div class="w-12 h-12 rounded-xl bg-sc-green/10 flex items-center justify-center mb-5"><i class="fa-solid fa-traffic-light text-sc-green text-xl"></i></div>
-                        <h3 class="font-display text-lg font-bold mb-2">Semáforo de Rentabilidade</h3>
-                        <p class="text-sc-muted text-sm leading-relaxed">Verde, amarelo ou vermelho para cada corrida — baseado na sua meta de custo por KM. Você decide o padrão. O app avalia na hora.</p>
-                    </div>
-                    <div class="feat-card rounded-2xl p-7">
-                        <div class="w-12 h-12 rounded-xl bg-sc-blue/10 flex items-center justify-center mb-5"><i class="fa-solid fa-calculator text-sc-blue text-xl"></i></div>
-                        <h3 class="font-display text-lg font-bold mb-2">Calculadora de Custo Real</h3>
-                        <p class="text-sc-muted text-sm leading-relaxed">Informe consumo de combustível, preço do litro e manutenção média. O app calcula seu custo real por KM e calibra o semáforo automaticamente.</p>
-                    </div>
-                    <div class="feat-card rounded-2xl p-7">
-                        <div class="w-12 h-12 rounded-xl bg-yellow-500/10 flex items-center justify-center mb-5"><i class="fa-solid fa-battery-full text-yellow-400 text-xl"></i></div>
-                        <h3 class="font-display text-lg font-bold mb-2">Zero Consumo em Standby</h3>
-                        <p class="text-sc-muted text-sm leading-relaxed">O serviço só ativa quando Uber ou 99 estiver em primeiro plano. Sem drenagem silenciosa de bateria nos seus apps pessoais.</p>
-                    </div>
-                    <div class="feat-card rounded-2xl p-7">
-                        <div class="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center mb-5"><i class="fa-solid fa-camera text-purple-400 text-xl"></i></div>
-                        <h3 class="font-display text-lg font-bold mb-2 flex items-center gap-2">Captura de Corridas <span class="bg-sc-yellow/10 text-sc-yellow text-[10px] px-2 py-0.5 rounded-full">EM BREVE</span></h3>
-                        <p class="text-sc-muted text-sm leading-relaxed">Screenshot automático do card de oferta salvo junto ao histórico — evidência visual de cada solicitação recebida.</p>
-                    </div>
-                    <div class="feat-card rounded-2xl p-7">
-                        <div class="w-12 h-12 rounded-xl bg-sc-red/10 flex items-center justify-center mb-5"><i class="fa-solid fa-scale-balanced text-sc-red text-xl"></i></div>
-                        <h3 class="font-display text-lg font-bold mb-2 flex items-center gap-2">Validação de Valor <span class="bg-sc-yellow/10 text-sc-yellow text-[10px] px-2 py-0.5 rounded-full">EM BREVE</span></h3>
-                        <p class="text-sc-muted text-sm leading-relaxed">Cruza o valor mostrado na oferta com o valor cobrado ao fim da corrida. Detecta automaticamente discrepâncias.</p>
-                    </div>
-                    <div class="feat-card rounded-2xl p-7">
-                        <div class="w-12 h-12 rounded-xl bg-sc-green/10 flex items-center justify-center mb-5"><i class="fa-solid fa-map-location-dot text-sc-green text-xl"></i></div>
-                        <h3 class="font-display text-lg font-bold mb-2 flex items-center gap-2">Áreas de Risco <span class="bg-sc-yellow/10 text-sc-yellow text-[10px] px-2 py-0.5 rounded-full">EM BREVE</span></h3>
-                        <p class="text-sc-muted text-sm leading-relaxed">Cadastre zonas problemáticas. O app gera relatórios dos seus melhores horários e regiões com base no histórico real.</p>
-                    </div>
-                </div>
+                <h3 class="font-display text-lg font-bold mb-2">Semáforo de Rentabilidade</h3>
+                <p class="text-sc-muted text-sm leading-relaxed">Verde, amarelo ou vermelho para cada corrida — baseado na sua meta de custo por KM. Você decide o padrão. O app avalia na hora.</p>
             </div>
-        </section>
 
-        <!-- ── COMO FUNCIONA ── -->
-        <section id="como-funciona" class="py-28 border-t border-sc-border bg-sc-surface/30">
-            <div class="max-w-4xl mx-auto px-5 lg:px-8">
-                <div class="text-center mb-20">
-                    <p class="text-sc-blue text-sm font-semibold tracking-widest uppercase mb-3">Como Funciona</p>
-                    <h2 class="font-display text-4xl lg:text-5xl font-extrabold">Da oferta à decisão<br>em 3 passos</h2>
+            <!-- 2 -->
+            <div class="feat-card rounded-2xl p-7">
+                <div class="w-12 h-12 rounded-xl bg-sc-blue/10 flex items-center justify-center mb-5">
+                    <i class="fa-solid fa-calculator text-sc-blue text-xl"></i>
                 </div>
-                <div class="space-y-12">
-                    <div class="flex gap-8">
-                        <div class="w-12 h-12 rounded-full bg-sc-green/10 border border-sc-green/30 flex items-center justify-center font-bold text-sc-green shrink-0">1</div>
-                        <div><h3 class="text-xl font-bold mb-2">Configure uma vez</h3><p class="text-sc-muted">Informe veículo e metas. O app calibra o semáforo de lucro automaticamente.</p></div>
-                    </div>
-                    <div class="flex gap-8">
-                        <div class="w-12 h-12 rounded-full bg-sc-blue/10 border border-sc-blue/30 flex items-center justify-center font-bold text-sc-blue shrink-0">2</div>
-                        <div><h3 class="text-xl font-bold mb-2">O app toca → o card aparece</h3><p class="text-sc-muted">Lemos o card via Acessibilidade — sem capturas desnecessárias, tudo 100% local e seguro.</p></div>
-                    </div>
-                    <div class="flex gap-8">
-                        <div class="w-12 h-12 rounded-full bg-purple-500/10 border border-purple-500/30 flex items-center justify-center font-bold text-purple-400 shrink-0">3</div>
-                        <div><h3 class="text-xl font-bold mb-2">Semáforo. Decisão. Lucro.</h3><p class="text-sc-muted">Veja o Valor/KM e Valor/Hora. Se estiver verde, aceite. O resto fica no histórico.</p></div>
-                    </div>
-                </div>
+                <h3 class="font-display text-lg font-bold mb-2">Calculadora de Custo Real</h3>
+                <p class="text-sc-muted text-sm leading-relaxed">Informe consumo de combustível, preço do litro e manutenção média. O app calcula seu custo real por KM e calibra o semáforo automaticamente.</p>
             </div>
-        </section>
 
-        <!-- ── ROADMAP ── -->
-        <section id="roadmap" class="py-28 border-t border-sc-border">
-            <div class="max-w-4xl mx-auto px-5 lg:px-8">
-                <div class="text-center mb-16">
-                    <p class="text-sc-yellow text-sm font-semibold tracking-widest uppercase mb-3">Próximos Passos</p>
-                    <h2 class="font-display text-4xl font-extrabold">O que estamos construindo</h2>
+            <!-- 3 -->
+            <div class="feat-card rounded-2xl p-7">
+                <div class="w-12 h-12 rounded-xl bg-yellow-500/10 flex items-center justify-center mb-5">
+                    <i class="fa-solid fa-battery-full text-yellow-400 text-xl"></i>
                 </div>
-                <div class="space-y-4">
-                    <div class="feat-card rounded-2xl p-6 flex gap-4">
-                        <i class="fa-solid fa-camera text-purple-400 mt-1"></i>
-                        <div><h4 class="font-bold">Captura de Histórico Visual</h4><p class="text-xs text-sc-muted">Screenshot da oferta salvo junto ao registro para auditoria.</p></div>
+                <h3 class="font-display text-lg font-bold mb-2">Zero Consumo em Standby</h3>
+                <p class="text-sc-muted text-sm leading-relaxed">O serviço só ativa quando Uber ou 99 estiver em primeiro plano. Sem drenagem silenciosa de bateria nos seus apps pessoais.</p>
+            </div>
+
+            <!-- 4 -->
+            <div class="feat-card rounded-2xl p-7">
+                <div class="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center mb-5">
+                    <i class="fa-solid fa-camera text-purple-400 text-xl"></i>
+                </div>
+                <h3 class="font-display text-lg font-bold mb-2 flex items-center gap-2">
+                    Captura de Corridas <span class="soon">EM BREVE</span>
+                </h3>
+                <p class="text-sc-muted text-sm leading-relaxed">Screenshot automático do card de oferta salvo junto ao histórico — evidência visual de cada solicitação recebida, incluindo valor e condições.</p>
+            </div>
+
+            <!-- 5 -->
+            <div class="feat-card rounded-2xl p-7">
+                <div class="w-12 h-12 rounded-xl bg-sc-red/10 flex items-center justify-center mb-5">
+                    <i class="fa-solid fa-scale-balanced text-sc-red text-xl"></i>
+                </div>
+                <h3 class="font-display text-lg font-bold mb-2 flex items-center gap-2">
+                    Validação de Valor <span class="soon">EM BREVE</span>
+                </h3>
+                <p class="text-sc-muted text-sm leading-relaxed">Cruza o valor mostrado na oferta com o valor cobrado ao fim da corrida. Detecta automaticamente discrepâncias — sem precisar conferir manualmente.</p>
+            </div>
+
+            <!-- 6 -->
+            <div class="feat-card rounded-2xl p-7">
+                <div class="w-12 h-12 rounded-xl bg-sc-green/10 flex items-center justify-center mb-5">
+                    <i class="fa-solid fa-map-location-dot text-sc-green text-xl"></i>
+                </div>
+                <h3 class="font-display text-lg font-bold mb-2 flex items-center gap-2">
+                    Áreas de Risco & Insights <span class="soon">EM BREVE</span>
+                </h3>
+                <p class="text-sc-muted text-sm leading-relaxed">Cadastre zonas problemáticas por categoria (roubo, enchente, trânsito). O app gera relatórios dos seus melhores horários e regiões com base no histórico real.</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     COMO FUNCIONA
+════════════════════════════════════════════════ -->
+<section id="como-funciona" class="py-28 border-t border-sc-border bg-sc-surface">
+    <div class="max-w-5xl mx-auto px-5 lg:px-8">
+
+        <div class="text-center mb-20">
+            <p class="text-sc-blue text-sm font-semibold tracking-widest uppercase mb-3">Como Funciona</p>
+            <h2 class="font-display text-4xl lg:text-5xl font-extrabold">Da oferta à decisão<br>em 3 passos</h2>
+        </div>
+
+        <div class="relative">
+            <!-- Vertical line -->
+            <div class="absolute left-6 top-8 bottom-8 timeline-line hidden md:block"></div>
+
+            <div class="space-y-12">
+
+                <!-- Step 1 -->
+                <div class="md:flex items-start gap-10">
+                    <div class="shrink-0 w-12 h-12 rounded-full bg-sc-green/20 border border-sc-green/50 flex items-center justify-center font-display font-extrabold text-sc-green text-lg relative z-10">1</div>
+                    <div class="mt-4 md:mt-0">
+                        <h3 class="font-display text-xl font-bold mb-2">Configure uma vez, use sempre</h3>
+                        <p class="text-sc-muted leading-relaxed">Informe seu veículo, consumo e metas de rentabilidade. A calculadora determina seu custo real por KM e calibra o semáforo. Feito isso, não precisa mais mexer.</p>
                     </div>
-                    <div class="feat-card rounded-2xl p-6 flex gap-4">
-                        <i class="fa-solid fa-scale-balanced text-sc-red mt-1"></i>
-                        <div><h4 class="font-bold">Auditoria de Ganhos Real</h4><p class="text-xs text-sc-muted">Compara o valor da oferta com o valor final pago pela plataforma.</p></div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="md:flex items-start gap-10">
+                    <div class="shrink-0 w-12 h-12 rounded-full bg-sc-blue/20 border border-sc-blue/50 flex items-center justify-center font-display font-extrabold text-sc-blue text-lg relative z-10">2</div>
+                    <div class="mt-4 md:mt-0">
+                        <h3 class="font-display text-xl font-bold mb-2">O app toca → o card aparece</h3>
+                        <p class="text-sc-muted leading-relaxed">Assim que Uber ou 99 exibirem uma oferta, o SmartCopilot lê a tela via Serviço de Acessibilidade do Android — sem capturas de tela desnecessárias, sem enviar dados para servidores. Tudo processado localmente em milissegundos.</p>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <!-- ── FAQ ── -->
-        <section id="faq" class="py-28 border-t border-sc-border">
-            <div class="max-w-4xl mx-auto px-5 lg:px-8">
-                <h2 class="font-display text-4xl font-extrabold text-center mb-16">Perguntas Frequentes</h2>
-                <div class="space-y-4">
-                    <details class="group bg-sc-surface rounded-2xl border border-sc-border p-6 cursor-pointer">
-                        <summary class="font-bold flex justify-between items-center list-none">O SmartCopilot dá ban? <i class="fa-solid fa-chevron-down text-xs transition group-open:rotate-180"></i></summary>
-                        <p class="text-sc-muted text-sm mt-4">Não. Usamos apenas a API de Acessibilidade passiva do Android. Não modificamos o app da Uber/99 e não usamos bots.</p>
-                    </details>
-                    <details class="group bg-sc-surface rounded-2xl border border-sc-border p-6 cursor-pointer">
-                        <summary class="font-bold flex justify-between items-center list-none">Consome muita bateria? <i class="fa-solid fa-chevron-down text-xs transition group-open:rotate-180"></i></summary>
-                        <p class="text-sc-muted text-sm mt-4">Não. O app fica em standby e só "acorda" quando uma oferta aparece na tela.</p>
-                    </details>
+                <!-- Step 3 -->
+                <div class="md:flex items-start gap-10">
+                    <div class="shrink-0 w-12 h-12 rounded-full bg-purple-500/20 border border-purple-500/50 flex items-center justify-center font-display font-extrabold text-purple-400 text-lg relative z-10">3</div>
+                    <div class="mt-4 md:mt-0">
+                        <h3 class="font-display text-xl font-bold mb-2">Semáforo. Decisão. Próxima.</h3>
+                        <p class="text-sc-muted leading-relaxed">O overlay exibe Valor/KM, Valor/Hora e Nota do passageiro — pintados de verde ou vermelho conforme sua meta. Você vê, decide e segue. A corrida fica salva no histórico automaticamente.</p>
+                    </div>
                 </div>
-            </div>
-        </section>
 
-        <!-- ── DOWNLOAD ── -->
-        <section id="download" class="py-32 border-t border-sc-border bg-sc-surface/50">
-            <div class="max-w-3xl mx-auto px-5 text-center">
-                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full badge-green text-xs font-semibold mb-8"><span class="pulse-dot"></span> Disponível na Play Store</div>
-                <h2 class="font-display text-4xl lg:text-6xl font-extrabold mb-8">Pronto para dirigir com <br><span class="text-grad">mais inteligência?</span></h2>
-                <a href="https://play.google.com/store/apps/details?id=com.smartcopilot.app" class="inline-flex items-center gap-3 px-10 py-5 rounded-2xl bg-sc-green text-sc-bg font-bold text-xl hover:opacity-90 transition glow-green">
-                    <i class="fa-brands fa-google-play"></i> Baixar Grátis
-                </a>
-            </div>
-        </section>
-    </main>
-
-    <footer class="py-12 border-t border-sc-border text-sc-muted text-xs">
-        <div class="max-w-7xl mx-auto px-5 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="flex items-center gap-3"><img src="smartcopilot_icon.png" class="w-8 h-8"><span class="font-display font-bold text-white text-lg">SmartCopilot</span></div>
-            <div class="text-center md:text-right">
-                <p>Suporte: <a href="mailto:suporte.smartcopilot@gmail.com" class="text-sc-blue">suporte.smartcopilot@gmail.com</a></p>
-                <p>© 2026 SmartCopilot. Todos os direitos reservados.</p>
             </div>
         </div>
-    </footer>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     ROADMAP
+════════════════════════════════════════════════ -->
+<section id="roadmap" class="py-28 border-t border-sc-border">
+    <div class="max-w-4xl mx-auto px-5 lg:px-8">
+
+        <div class="text-center mb-16">
+            <p class="text-sc-yellow text-sm font-semibold tracking-widest uppercase mb-3">Novidades</p>
+            <h2 class="font-display text-4xl lg:text-5xl font-extrabold">O que está vindo</h2>
+            <p class="text-sc-muted mt-4">Funcionalidades em desenvolvimento ativo, em ordem de prioridade.</p>
+        </div>
+
+        <div class="space-y-4">
+
+            <div class="border-grad rounded-2xl p-6 flex items-start gap-5">
+                <div class="w-10 h-10 shrink-0 rounded-xl bg-purple-500/15 flex items-center justify-center">
+                    <i class="fa-solid fa-camera text-purple-400"></i>
+                </div>
+                <div>
+                    <h3 class="font-display font-bold text-base mb-1">Captura automática do card de corrida</h3>
+                    <p class="text-sc-muted text-sm leading-relaxed">Screenshot da oferta salvo junto ao registro no histórico — evidência visual do valor recebido, distância e condições no momento da solicitação.</p>
+                </div>
+            </div>
+
+            <div class="feat-card rounded-2xl p-6 flex items-start gap-5">
+                <div class="w-10 h-10 shrink-0 rounded-xl bg-sc-red/15 flex items-center justify-center">
+                    <i class="fa-solid fa-scale-balanced text-sc-red"></i>
+                </div>
+                <div>
+                    <h3 class="font-display font-bold text-base mb-1">Validação de valor da corrida</h3>
+                    <p class="text-sc-muted text-sm leading-relaxed">Compara automaticamente o valor exibido na oferta com o cobrado ao finalizar. Detecta discrepâncias e gera alerta — acabando com as cobranças incorretas despercebidas.</p>
+                </div>
+            </div>
+
+            <div class="feat-card rounded-2xl p-6 flex items-start gap-5">
+                <div class="w-10 h-10 shrink-0 rounded-xl bg-sc-green/15 flex items-center justify-center">
+                    <i class="fa-solid fa-triangle-exclamation text-sc-green"></i>
+                </div>
+                <div>
+                    <h3 class="font-display font-bold text-base mb-1">Cadastro avançado de áreas de risco</h3>
+                    <p class="text-sc-muted text-sm leading-relaxed">Interface aprimorada para registrar zonas problemáticas com categoria (assalto, enchente, trânsito), horário de risco e histórico de ocorrências por região.</p>
+                </div>
+            </div>
+
+            <div class="feat-card rounded-2xl p-6 flex items-start gap-5">
+                <div class="w-10 h-10 shrink-0 rounded-xl bg-sc-blue/15 flex items-center justify-center">
+                    <i class="fa-solid fa-chart-line text-sc-blue"></i>
+                </div>
+                <div>
+                    <h3 class="font-display font-bold text-base mb-1">Insights de locais e horários</h3>
+                    <p class="text-sc-muted text-sm leading-relaxed">Relatórios automáticos gerados a partir do seu próprio histórico: melhores regiões, faixas de horário mais rentáveis e padrões de demanda — sem depender de dados genéricos.</p>
+                </div>
+            </div>
+
+            <div class="feat-card rounded-2xl p-6 flex items-start gap-5">
+                <div class="w-10 h-10 shrink-0 rounded-xl bg-sc-yellow/15 flex items-center justify-center">
+                    <i class="fa-solid fa-list-check text-sc-yellow"></i>
+                </div>
+                <div>
+                    <h3 class="font-display font-bold text-base mb-1">Controle de corridas aceitas</h3>
+                    <p class="text-sc-muted text-sm leading-relaxed">Painel de gestão com timeline das corridas realizadas por sessão — valor total, km percorridos e rentabilidade média do dia, semana e mês.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     FAQ (Perguntas Frequentes)
+════════════════════════════════════════════════ -->
+<section id="faq" class="py-28 border-t border-sc-border bg-sc-bg">
+    <div class="max-w-4xl mx-auto px-5 lg:px-8">
+        
+        <div class="text-center mb-16">
+            <p class="text-sc-blue text-sm font-semibold tracking-widest uppercase mb-3">Tire suas dúvidas</p>
+            <h2 class="font-display text-4xl lg:text-5xl font-extrabold">Perguntas Frequentes</h2>
+        </div>
+
+        <div class="space-y-4">
+            
+            <!-- Pergunta 1 -->
+            <details class="group bg-sc-surface rounded-2xl border border-sc-border overflow-hidden transition-all duration-300">
+                <summary class="flex justify-between items-center font-display font-bold cursor-pointer list-none p-6 text-lg text-white hover:text-sc-green transition-colors">
+                    O SmartCopilot dá ban na Uber ou 99?
+                    <span class="transition group-open:rotate-180">
+                        <i class="fa-solid fa-chevron-down text-sc-muted"></i>
+                    </span>
+                </summary>
+                <div class="text-sc-muted text-base leading-relaxed px-6 pb-6 pt-0">
+                    Não. Nosso aplicativo não altera, não invade e não usa APIs não oficiais dos aplicativos de transporte. Nós apenas "lemos" a tela passivamente usando a API oficial de Acessibilidade do Android. É 100% seguro e atua apenas como uma calculadora avançada.
+                </div>
+            </details>
+
+            <!-- Pergunta 2 -->
+            <details class="group bg-sc-surface rounded-2xl border border-sc-border overflow-hidden transition-all duration-300">
+                <summary class="flex justify-between items-center font-display font-bold cursor-pointer list-none p-6 text-lg text-white hover:text-sc-green transition-colors">
+                    O aplicativo gasta muita bateria?
+                    <span class="transition group-open:rotate-180">
+                        <i class="fa-solid fa-chevron-down text-sc-muted"></i>
+                    </span>
+                </summary>
+                <div class="text-sc-muted text-base leading-relaxed px-6 pb-6 pt-0">
+                    Não! Diferente de outros apps que gravam a tela o tempo todo, o SmartCopilot entra em "hibernação" automática. Ele só acorda e processa dados quando a Uber ou a 99 estão ativas na sua tela, preservando a bateria e o processamento do seu celular.
+                </div>
+            </details>
+
+            <!-- Pergunta 3 -->
+            <details class="group bg-sc-surface rounded-2xl border border-sc-border overflow-hidden transition-all duration-300">
+                <summary class="flex justify-between items-center font-display font-bold cursor-pointer list-none p-6 text-lg text-white hover:text-sc-green transition-colors">
+                    Funciona sem internet (Offline)?
+                    <span class="transition group-open:rotate-180">
+                        <i class="fa-solid fa-chevron-down text-sc-muted"></i>
+                    </span>
+                </summary>
+                <div class="text-sc-muted text-base leading-relaxed px-6 pb-6 pt-0">
+                    Sim! Toda a inteligência de cálculo (R$/KM, R$/Hora) e a leitura de tela rodam 100% offline no processador do seu celular. Você só precisa de internet para fazer o login inicial ou para recarregar suas horas de uso.
+                </div>
+            </details>
+
+            <!-- Pergunta 4 -->
+            <details class="group bg-sc-surface rounded-2xl border border-sc-border overflow-hidden transition-all duration-300">
+                <summary class="flex justify-between items-center font-display font-bold cursor-pointer list-none p-6 text-lg text-white hover:text-sc-green transition-colors">
+                    Ele aceita corridas automaticamente (Macro)?
+                    <span class="transition group-open:rotate-180">
+                        <i class="fa-solid fa-chevron-down text-sc-muted"></i>
+                    </span>
+                </summary>
+                <div class="text-sc-muted text-base leading-relaxed px-6 pb-6 pt-0">
+                    Não. Nós somos um "Copiloto" analítico e não um robô de automação (Macro). Nós apenas mostramos os números mastigados e a cor do semáforo na sua tela. A decisão e o clique de aceitar ou recusar continuam sendo exclusivamente seus.
+                </div>
+            </details>
+
+            <!-- Pergunta 5 -->
+            <details class="group bg-sc-surface rounded-2xl border border-sc-border overflow-hidden transition-all duration-300">
+                <summary class="flex justify-between items-center font-display font-bold cursor-pointer list-none p-6 text-lg text-white hover:text-sc-green transition-colors">
+                    O aplicativo é pago?
+                    <span class="transition group-open:rotate-180">
+                        <i class="fa-solid fa-chevron-down text-sc-muted"></i>
+                    </span>
+                </summary>
+                <div class="text-sc-muted text-base leading-relaxed px-6 pb-6 pt-0">
+                    Durante o nosso lançamento, o SmartCopilot é 100% gratuito através do nosso sistema de "Banco de Tempo" (você assiste a um vídeo curto e ganha horas de uso livre). Futuramente teremos planos Premium para quem não quiser ver anúncios, mas a versão grátis sempre existirá.
+                </div>
+            </details>
+
+        </div>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     DOWNLOAD (âncora)
+════════════════════════════════════════════════ -->
+<section id="download" class="py-24 border-t border-sc-border bg-sc-surface">
+    <div class="max-w-3xl mx-auto px-5 lg:px-8 text-center">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full badge-green text-xs font-semibold mb-8">
+            <span class="pulse-dot"></span>
+            Testes fechados – Play Store
+        </div>
+        <h2 class="font-display text-4xl lg:text-5xl font-extrabold mb-6">Pronto para<br><span class="text-grad">dirigir com mais controle?</span></h2>
+        <p class="text-sc-muted text-lg mb-10 max-w-xl mx-auto">Disponível gratuitamente durante o lançamento. Baixe agora e comece sua primeira análise ainda hoje.</p>
+        <a href="https://play.google.com/store/apps/details?id=com.smartcopilot.app&hl=pt_BR" target="_blank" class="inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-sc-green text-sc-bg font-bold text-lg hover:opacity-90 transition glow-green">
+            <i class="fa-brands fa-google-play text-base"></i>
+            Baixar na Play Store
+        </a>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     PRIVACIDADE
+════════════════════════════════════════════════ -->
+<section id="privacidade" class="py-28 border-t border-sc-border">
+    <div class="max-w-4xl mx-auto px-5 lg:px-8">
+        <!-- Conteúdo de política de privacidade aqui -->
+    </div>
+</section>
+
+<footer class="border-t border-sc-border py-14">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-3">
+            <img src="img/smartcopilot_icon.jpg" onerror="this.style.display='none'" class="w-8 h-8 rounded-xl object-cover">
+            <span class="font-display font-bold text-lg text-white">SmartCopilot</span>
+        </div>
+        <div class="text-center md:text-right">
+            <p class="text-sc-muted text-xs">Desenvolvedor: Robert Ferreira</p>
+            <p class="text-sc-muted text-xs">Suporte: <a href="mailto:suporte.smartcopilot@gmail.com" class="text-sc-blue hover:underline">suporte.smartcopilot@gmail.com</a></p>
+            <p class="text-sc-muted text-xs">© 2026 SmartCopilot. Todos os direitos reservados.</p>
+        </div>
+    </div>
+</footer>
 
     <script>
+        // Lógica de Splash Screen Premium
         window.addEventListener('load', function() {
             setTimeout(function() {
                 const loader = document.getElementById('loading-screen');
                 if (loader) {
                     loader.style.opacity = '0';
-                    setTimeout(() => loader.style.display = 'none', 500);
+                    setTimeout(() => {
+                        loader.style.display = 'none';
+                    }, 500);
                 }
-            }, 1200);
+            }, 1200); // 1.2s de exibição mínima para impacto visual
         });
     </script>
 </body>
